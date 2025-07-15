@@ -14,7 +14,7 @@ const cors = require('cors')
 const conn = require('./db/conn')
 const compras = require('./model/compras')
 const produtos = require('./model/produtos')
-const usuario = require('./model/Usuario')
+const usuario = require('./model/usuario')
 
 
 const dbHost = process.env.DB_HOST;
