@@ -1,6 +1,6 @@
-const Usuario = require('./usuario')
+const Usuario = require('./Usuario')
 const Produto = require('./produto')
-const Compras = require('./compras')
+const Compras = require('./Compras')
 
 Usuario.hasMany(Compras, {
     foreignKey: 'usuarioId',
