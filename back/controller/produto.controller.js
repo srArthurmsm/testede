@@ -57,4 +57,22 @@ const atualizar = async (req,res)=>{
     }
 }
 
-module.exports = { cadastrar, listar, apagar, atualizar}
+const findbyid = async (req,res)=>{
+    const id = req.params.id
+    const valores = req.body
+    try{
+        let dados = await Produto.findByPk(id)
+        if(dados){
+            res.status(200).json(dados)
+        }else{
+            res.status(404).json({message: 'Produto não encontrado!'})
+        }
+    }catch(err){
+        console.error('Erro ao atualizar os dados!',err)
+        res.status(500).json({message: 'Erro ao atualizar os dados!'})
+    }
+}
+
+
+
+module.exports = { cadastrar, listar, apagar, atualizar, findbyid}

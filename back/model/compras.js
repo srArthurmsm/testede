@@ -37,7 +37,7 @@ const Compras = db.define('compras',{
         allowNull: false
     }
 },{
-    tableName: 'produtos', 
+    tableName: 'compras', 
     timestamps: false
 })
 

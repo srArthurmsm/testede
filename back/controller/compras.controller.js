@@ -1,9 +1,9 @@
-const Produto = require('../model/Compras')
+const Compras = require('../model/Compras')
 
 const cadastrar = async (req,res)=>{
     const valores = req.body
     try{
-        const dados = await Produto.create(valores)
+        const dados = await Compras.create(valores)
         res.status(200).json(dados)
     }catch(err){
         console.error('Erro ao cadastrar os dados!',err)
@@ -13,7 +13,7 @@ const cadastrar = async (req,res)=>{
 
 const listar = async (req,res)=>{
     try{
-        const dados = await Produto.findAll()
+        const dados = await Compras.findAll()
         res.status(200).json(dados)
     }catch(err){
         console.error('Erro ao listar os dados!',err)
@@ -22,15 +22,16 @@ const listar = async (req,res)=>{
 }
 
 
+
 const apagar = async (req,res)=>{
     const id = req.params.id
     try{
-        const dados = await Produto.findByPk(id)
+        const dados = await Compras.findByPk(id)
         if(dados){
-            await Produto.destroy({where: { id: id}})
+            await Compras.destroy({where: { id: id}})
             res.status(204).json({message: 'Dados excluídos com sucesso!'})
         }else{
-            res.status(404).json({message: 'Produto não encontrado!'})
+            res.status(404).json({message: 'Compras não encontrado!'})
         }    
     }catch(err){
         console.error('Erro ao apagar os dados!',err)
@@ -43,13 +44,13 @@ const atualizar = async (req,res)=>{
     const id = req.params.id
     const valores = req.body
     try{
-        let dados = await Produto.findByPk(id)
+        let dados = await Compras.findByPk(id)
         if(dados){
-            await Produto.update(valores, {where: { id: id}})
-            dados = await Produto.findByPk(id)
+            await Compras.update(valores, {where: { id: id}})
+            dados = await Compras.findByPk(id)
             res.status(200).json(dados)
         }else{
-            res.status(404).json({message: 'Produto não encontrado!'})
+            res.status(404).json({message: 'Compras não encontrado!'})
         }
     }catch(err){
         console.error('Erro ao atualizar os dados!',err)
@@ -57,4 +58,22 @@ const atualizar = async (req,res)=>{
     }
 }
 
-module.exports = { cadastrar, listar, apagar, atualizar}
+
+const findbyid = async (req,res)=>{
+    const id = req.params.id
+    const valores = req.body
+    try{
+        let dados = await Compras.findByPk(id)
+        if(dados){
+            res.status(200).json(dados)
+        }else{
+            res.status(404).json({message: 'Compras não encontrado!'})
+        }
+    }catch(err){
+        console.error('Erro ao atualizar os dados!',err)
+        res.status(500).json({message: 'Erro ao atualizar os dados!'})
+    }
+}
+
+
+module.exports = { cadastrar, listar, apagar, atualizar, findbyid}

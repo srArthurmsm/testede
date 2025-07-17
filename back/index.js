@@ -1,41 +1,52 @@
-
+const express = require('express')
+const app = express()
 
 require('dotenv').config(
     {
-        path: "./.env"
+        path: '.'
     }
-);
+)
 
-
-const express = require('express')
-const app = express()
 const cors = require('cors')
+const PORT = process.env.PORT
+const hostname = process.env.DB_HOST
 
 const conn = require('./db/conn')
-const compras = require('./model/Compras')
-const produtos = require('./model/Produtos')
-const usuario = require('./model/Usuario')
+const usuarioController = require('./controller/usuario.controller')
+const produtoController = require('./controller/produto.controller')
+const compraController = require('./controller/compra.controller')
 
-
-const dbHost = process.env.DB_HOST;
-const dbPort = process.env.DB_PORT;
-
-app.use(express.urlencoded({extended:true}))
-app.use(express())
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 app.use(cors())
 
+app.get('/usuario', usuarioController.listar)
+app.post('/usuario', usuarioController.cadastrar)
+app.put('/usuario/:id', usuarioController.atualizar)
+app.delete('/usuario/:id', usuarioController.apagar)
+app.get('/usuario/id/:id', usuarioController.findbyId)
+app.get('/usuario/nome/:nome', usuarioController.findByName)
 
+app.get('/produto', produtoController.listar)
+app.post('/produto', produtoController.cadastrar)
+app.put('/produto/:id', produtoController.atualizar)
+app.delete('/produto/:id', produtoController.apagar)
+
+app.get('/compra', compraController.listar)
+app.post('/compra', compraController.cadastrar)
+app.put('/compra/:idCompra', compraController.atualizar)
+app.delete('/compra/:idCompra', compraController.apagar)
 
 app.get('/', (req,res)=>{
-    res.status(200).json({message: "Aplicação rodando!"})
+    res.status(200).json({message: "API rodando!"})
 })
 
 conn.sync()
 .then(()=>{
     app.listen(PORT, hostname, ()=>{
-        console.log(`Servidor rodando em http://${hostname}:${PORT}`)
+        console.log(`Servidor rodando em: http://${hostname}:${PORT}`)
     })
 })
 .catch((err)=>{
-    console.error('Não foi possível conectar com o banco de dados!',err)
+    console.error('Não foi possível se conectar com o banco de dados: ', err)
 })
