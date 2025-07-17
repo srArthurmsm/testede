@@ -23,8 +23,8 @@ const Usuarios = db.define('usuarios',{
         type: DataTypes.STRING(30),
         allowNull: false
     },
-    telafone: {
-        type: DataTypes.INTEGER,
+    telefone: {
+        type: DataTypes.STRING, 
         allowNull: false
     },
     address: {
