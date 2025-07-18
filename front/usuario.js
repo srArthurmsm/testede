@@ -119,7 +119,7 @@ const apagarBtn = document.getElementById('apagar');
 apagarBtn.addEventListener('click', (e) => {
     e.preventDefault();
   
-    const id = document.getElementById('ID2').value;
+    const id = document.getElementById('id3').value;
   
     fetch(`http://localhost:3000/usuario/${id}`, {
       method: 'DELETE'
@@ -138,7 +138,7 @@ apagarBtn.addEventListener('click', (e) => {
         if (listarBtn) listarBtn.click();
       })
       .catch(err => {
-        console.error('Erro ao apagar usuário:', err);
+        console.error('Erro', err);
         res3.innerHTML = `<p style="color:red;">Erro`;
       });
   });

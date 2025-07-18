@@ -1,4 +1,4 @@
-const Compras = require('../model/Compras')
+const Compras = require('../model/compras')
 
 const cadastrar = async (req,res)=>{
     const valores = req.body
