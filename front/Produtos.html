@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="produto.js" defer></script>
+  <script src="produto.js" defer></script> 
   <link rel="stylesheet" href="style.css" />
   <title>Gerenciar Produtos</title>
 </head>
@@ -11,103 +11,95 @@
   <header>
     <nav>
       <a href="index.html">Home</a>
-      <a href="Usuario.html">Gerenciar Usuários</a>
+      <a href="Usuario.html">Gerenciar Usuarios</a>
       <a href="Produtos.html">Gerenciar Produtos</a>
       <a href="Compras.html">Gerenciar Compras</a>
-      <a href="Graficos.html">Gráficos</a>
+      <a href="Graficos.html">Graficos</a>
     </nav>
   </header>
-
   <main>
     <h1>Gerenciar Produtos</h1>
-
     <section>
       <h2>Cadastrar Novo Produto</h2>
       <form id="produto-form">
-        <label for="quant">Quantidade:</label>
-        <input type="number" id="quant" name="quant" required />
-
-        <label for="date">Data:</label>
-        <input type="date" id="date" name="date" required />
-
-        <label for="price">Preço:</label>
-        <input type="number" id="price" name="price" step="0.01" required />
-
-        <label for="discountPercentage">Percentual de Desconto:</label>
-        <input type="number" id="discountPercentage" name="discountPercentage" required />
-
-        <label for="paymentWay">Forma de Pagamento:</label>
-        <input type="text" id="paymentWay" name="paymentWay" required />
-
-        <label for="status">Status:</label>
-        <input type="text" id="status" name="status" required />
-
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required />
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao" required></textarea>
+        <label for="categoria">Categoria:</label>
+        <input type="text" id="categoria" name="categoria" required />
+        <label for="preco">Preço:</label>
+        <input type="number" id="preco" name="preco" step="0.01" required />
+        <label for="percentualDesconto">Percentual de Desconto:</label>
+        <input type="number" id="percentualDesconto" name="percentualDesconto" step="0.01" required />
+        <label for="estoque">Estoque:</label>
+        <input type="number" id="estoque" name="estoque" required />
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" name="marca" required />
+        <label for="imagem">URL da Imagem:</label>
+        <input type="text" id="imagem" name="imagem" required />
         <button type="submit" id="cadastrar">Cadastrar</button>
       </form>
       <div id="res"></div>
     </section>
-
     <section>
-      <h2>Lista de Produtos</h2>
+      <h2>Lista de Produtos</h2> 
       <table id="produtos-table">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Quantidade</th>
-            <th>Data</th>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
             <th>Preço</th>
             <th>Desconto (%)</th>
-            <th>Preço Final</th>
-            <th>Forma de Pagamento</th>
-            <th>Status</th>
+            <th>Preço Final</th> 
+            <th>Estoque</th>
+            <th>Marca</th>
+            <th>Imagem</th>
+            <th>Ações</th> 
           </tr>
         </thead>
         <tbody>
-          
+
         </tbody>
       </table>
       <button type="button" id="listar">Listar</button>
     </section>
-
     <section>
       <h2>Atualizar Produto</h2>
       <form id="produto-form-update">
         <label for="id">ID:</label>
         <input type="number" id="id" name="id" required />
-
-        <label for="quant2">Quantidade:</label>
-        <input type="number" id="quant2" name="quant" required />
-
-        <label for="date2">Data:</label>
-        <input type="date" id="date2" name="date" required />
-
-        <label for="price2">Preço:</label>
-        <input type="number" id="price2" name="price" step="0.01" required />
-
-        <label for="discountPercentage2">Percentual de Desconto:</label>
-        <input type="number" id="discountPercentage2" name="discountPercentage"  required />
-
-        <label for="paymentWay2">Forma de Pagamento:</label>
-        <input type="text" id="paymentWay2" name="paymentWay" required />
-
-        <label for="status2">Status:</label>
-        <input type="text" id="status2" name="status" required />
-
+        <label for="titulo2">Título:</label>
+        <input type="text" id="titulo2" name="titulo" required />
+        <label for="descricao2">Descrição:</label>
+        <textarea id="descricao2" name="descricao" required></textarea>
+        <label for="categoria2">Categoria:</label>
+        <input type="text" id="categoria2" name="categoria" required />
+        <label for="preco2">Preço:</label>
+        <input type="number" id="preco2" name="preco" step="0.01" required />
+        <label for="percentualDesconto2">Percentual de Desconto:</label>
+        <input type="number" id="percentualDesconto2" name="percentualDesconto" step="0.01" required />
+        <label for="estoque2">Estoque:</label>
+        <input type="number" id="estoque2" name="estoque" required />
+        <label for="marca2">Marca:</label>
+        <input type="text" id="marca2" name="marca" required />
+        <label for="imagem2">URL da Imagem:</label>
+        <input type="text" id="imagem2" name="imagem" required />
         <button type="submit" id="atualizar">Atualizar</button>
       </form>
       <div id="res2"></div>
     </section>
-
     <section>
-      <h2>Apagar Produto</h2>
+      <h2>Apagar Produto</h2> 
       <form id="produto-form-delete">
-        <label for="id">ID:</label>
+        <label for="id3">ID:</label>
         <input type="number" id="id3" name="id" required />
         <button type="submit" id="apagar">Apagar</button>
       </form>
       <div id="res3"></div>
     </section>
   </main>
-
 </body>
 </html>

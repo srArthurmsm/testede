@@ -3,18 +3,18 @@ let cadastrar = document.getElementById('cadastrar');
 
 cadastrar.addEventListener('click', (e) => {
     e.preventDefault();
-    const price = Number(document.getElementById('price').value);
-    const discountPercentage = Number(document.getElementById('discountPercentage').value);
-    const finalPrice = price * (discountPercentage / 100)
+
     const valores = {
-        quant: Number(document.getElementById('quant').value),
-        date: document.getElementById('date').value,
-        price: price,
-        discountPercentage: discountPercentage,
-        finalPrice: finalPrice,
-        paymentWay: document.getElementById('paymentWay').value,
-        status: document.getElementById('status').value
+        titulo: document.getElementById('titulo').value,
+        descricao: document.getElementById('descricao').value,
+        categoria: document.getElementById('categoria').value,
+        preco: parseFloat(document.getElementById('preco').value),
+        percentualDesconto: parseFloat(document.getElementById('percentualDesconto').value),
+        estoque: parseInt(document.getElementById('estoque').value),
+        marca: document.getElementById('marca').value,
+        imagem: document.getElementById('imagem').value
     };
+
     res.innerHTML = '';
 
     fetch('http://localhost:3000/produto', {
@@ -39,32 +39,33 @@ const listarBtn = document.getElementById('listar');
 const tabelaProdutos = document.querySelector('#produtos-table tbody');
 
 listarBtn.addEventListener('click', () => {
-  fetch('http://localhost:3000/produto') 
+    fetch('http://localhost:3000/produto') 
     .then(resp => {
-      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-      return resp.json();
+        if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
+        return resp.json();
     })
     .then(produtos => {
-      tabelaProdutos.innerHTML = '';
+        tabelaProdutos.innerHTML = '';
 
-      produtos.forEach(produto => {
-        const linha = document.createElement('tr');
-        linha.innerHTML = `
-          <td>${produto.id}</td>
-          <td>${produto.quant}</td>
-          <td>${new Date(produto.date).toLocaleDateString()}</td>
-          <td>${produto.price.toFixed(2)}</td>
-          <td>${produto.discountPercentage.toFixed(2)}</td>
-          <td>${produto.finalPrice.toFixed(2)}</td>
-          <td>${produto.paymentWay}</td>
-          <td>${produto.status}</td>
-        `;
-        tabelaProdutos.appendChild(linha);
-      });
+        produtos.forEach(produto => {
+            const linha = document.createElement('tr');
+            linha.innerHTML = `
+                <td>${produto.id}</td>
+                <td>${produto.titulo}</td>
+                <td>${produto.descricao}</td>
+                <td>${produto.categoria}</td>
+                <td>${produto.preco.toFixed(2)}</td>
+                <td>${produto.percentualDesconto.toFixed(2)}</td>
+                <td>${produto.estoque}</td>
+                <td>${produto.marca}</td>
+                <td><img src="${produto.imagem}" width="50" /></td>
+            `;
+            tabelaProdutos.appendChild(linha);
+        });
     })
     .catch(err => {
-      console.error('Erro ao carregar produtos:', err);
-      tabelaProdutos.innerHTML = `<tr><td colspan="8">Erro ao carregar produtos.</td></tr>`;
+        console.error('Erro ao carregar produtos:', err);
+        tabelaProdutos.innerHTML = `<tr><td colspan="9">Erro ao carregar produtos.</td></tr>`;
     });
 });
 
@@ -76,35 +77,33 @@ atualizarBtn.addEventListener('click', (e) => {
 
     const id = document.getElementById('id').value;
 
-    const price = Number(document.getElementById('price').value);
-    const discountPercentage = Number(document.getElementById('discountPercentage').value);
-    const finalPrice = price * (discountPercentage / 100)
     const valores = {
-        quant: Number(document.getElementById('quant').value),
-        date: document.getElementById('date').value,
-        price: price,
-        discountPercentage: discountPercentage,
-        finalPrice: finalPrice,
-        paymentWay: document.getElementById('paymentWay').value,
-        status: document.getElementById('status').value
+        titulo: document.getElementById('titulo').value,
+        descricao: document.getElementById('descricao').value,
+        categoria: document.getElementById('categoria').value,
+        preco: parseFloat(document.getElementById('preco').value),
+        percentualDesconto: parseFloat(document.getElementById('percentualDesconto').value),
+        estoque: parseInt(document.getElementById('estoque').value),
+        marca: document.getElementById('marca').value,
+        imagem: document.getElementById('imagem').value
     };
 
     fetch(`http://localhost:3000/produto/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(valores)
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(valores)
     })
     .then(resp => {
-      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-      return resp.json();
+        if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
+        return resp.json();
     })
     .then(dados => {
-      res2.innerHTML = `<p style="color:green;">Produto atualizado com sucesso!</p>`;
-      if (listarBtn) listarBtn.click();
+        res2.innerHTML = `<p style="color:green;">Produto atualizado com sucesso!</p>`;
+        if (listarBtn) listarBtn.click();
     })
     .catch(err => {
-      console.error('Erro ao atualizar o produto:', err);
-      res2.innerHTML = `<p style="color:red;">Erro ao atualizar o produto.</p>`;
+        console.error('Erro ao atualizar o produto:', err);
+        res2.innerHTML = `<p style="color:red;">Erro ao atualizar o produto.</p>`;
     });
 });
 
@@ -113,21 +112,22 @@ const apagarBtn = document.getElementById('apagar');
 
 apagarBtn.addEventListener('click', (e) => {
     e.preventDefault(); 
-    const id = document.getElementById('idDelete').value;   
+    const id = document.getElementById('id3').value;
+
     fetch(`http://localhost:3000/produto/${id}`, {
-      method: 'DELETE'
+        method: 'DELETE'
     })
     .then(resp => {
-      if (resp.status === 404) throw new Error('Produto não encontrado');
-      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-      return resp.json();
+        if (resp.status === 404) throw new Error('Produto não encontrado');
+        if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
+        return resp.json();
     })
     .then(() => {
-      res3.innerHTML = `<p style="color:green;">Produto apagado com sucesso!</p>`;
-      if (listarBtn) listarBtn.click();
+        res3.innerHTML = `<p style="color:green;">Produto apagado com sucesso!</p>`;
+        if (listarBtn) listarBtn.click();
     })
     .catch(err => {
-      console.error('Erro ao apagar produto:', err);
-      res3.innerHTML = `<p style="color:red;">Erro ao apagar produto.</p>`;
+        console.error('Erro ao apagar produto:', err);
+        res3.innerHTML = `<p style="color:red;">Erro ao apagar produto.</p>`;
     });
 });

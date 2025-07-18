@@ -1,4 +1,4 @@
-const Produto = require('../model/Produtos')
+const Produto = require('../model/produtos')
 
 const cadastrar = async (req,res)=>{
     const valores = req.body

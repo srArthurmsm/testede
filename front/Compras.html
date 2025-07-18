@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="usuario.js" defer></script>
+  <script src="compras.js" defer></script>
   <link rel="stylesheet" href="style.css" />
   <title>Gerenciar Compras</title>
 </head>
@@ -11,45 +11,36 @@
   <header>
     <nav>
       <a href="index.html">Home</a>
-      <a href="Usuario.html">Gerenciar Usuários</a>
+      <a href="Usuario.html">Gerenciar Usuarios</a>
       <a href="Produtos.html">Gerenciar Produtos</a>
       <a href="Compras.html">Gerenciar Compras</a>
-      <a href="Graficos.html">Gráficos</a>
+      <a href="Graficos.html">Graficos</a>
     </nav>
   </header>
 
   <main>
-    <h1>Gerenciar Usuários</h1>
+    <h1>Gerenciar Compras</h1>
 
     <section>
-      <h2>Cadastrar Novo Usuário</h2>
-      <form id="usuario-form">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="firstName" required />
+      <h2>Cadastrar Novo Compras</h2>
+      <form id="produto-form">
+        <label for="quant">Quantidade:</label>
+        <input type="number" id="quant" name="quant" required />
 
-        <label for="sobrenome">Sobrenome:</label>
-        <input type="text" id="sobrenome" name="lastName" required />
+        <label for="date">Data:</label>
+        <input type="date" id="date" name="date" required />
 
-        <label for="idade">Idade:</label>
-        <input type="number" id="idade" name="age" required />
+        <label for="price">Preço:</label>
+        <input type="number" id="price" name="price" step="0.01" required />
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
+        <label for="discountPercentage">Percentual de Desconto:</label>
+        <input type="number" id="discountPercentage" name="discountPercentage" required />
 
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" required />
+        <label for="paymentWay">Forma de Pagamento:</label>
+        <input type="text" id="paymentWay" name="paymentWay" required />
 
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="address" required />
-
-        <label for="cidade">Cidade:</label>
-        <input type="text" id="cidade" name="city" required />
-
-        <label for="estado">Estado:</label>
-        <input type="text" id="estado" name="state" required />
-
-        <label for="nascimento">Data de Nascimento:</label>
-        <input type="date" id="nascimento" name="birthDate" required />
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required />
 
         <button type="submit" id="cadastrar">Cadastrar</button>
       </form>
@@ -57,75 +48,66 @@
     </section>
 
     <section>
-      <h2>Lista de Usuários</h2>
-      <table id="usuarios-table">
+      <h2>Lista de Compras</h2>
+      <table id="produtos-table">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th>Endereço</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>Data de naçismento</th>
+            <th>Quantidade</th>
+            <th>Data</th>
+            <th>Preço</th>
+            <th>Desconto (%)</th>
+            <th>Preço Final</th>
+            <th>Forma de Pagamento</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Os usuários cadastrados serão inseridos aqui via JavaScript -->
+          
         </tbody>
       </table>
       <button type="button" id="listar">Listar</button>
     </section>
-      <section>
-        <h2>Atualizar Usuario</h2>
-        <form id="usuario-form">
-          <label for="ID">ID</label>
-          <input type="ID" id="ID" name="ID" required />
 
-          <label for="nome">Nome:</label>
-          <input type="text" id="nome2" name="firstName" required />
-  
-          <label for="sobrenome">Sobrenome:</label>
-          <input type="text" id="sobrenome2" name="lastName" required />
-  
-          <label for="idade">Idade:</label>
-          <input type="number" id="idade2" name="age" required />
-  
-          <label for="email">Email:</label>
-          <input type="email" id="email2" name="email" required />
-  
-          <label for="telefone">Telefone:</label>
-          <input type="tel" id="telefone2" name="telefone" required />
-  
-          <label for="endereco">Endereço:</label>
-          <input type="text" id="endereco2" name="address" required />
-  
-          <label for="cidade">Cidade:</label>
-          <input type="text" id="cidade2" name="city" required />
-  
-          <label for="estado">Estado:</label>
-          <input type="text" id="estado2" name="state" required />
-  
-          <label for="nascimento">Data de Nascimento:</label>
-          <input type="date" id="nascimento2" name="birthDate" required />
-  
-          <button type="submit" id="atualizar">Atualizar</button>
-        </form>
-        <div id="res2"></div>
-      </section>
-      <section>
-        <h2>Apagar Usuario</h2>
-        <form id="usuario-form">
-          <label for="ID">ID</label>
-          <input type="ID" id="ID2" name="ID" required />
-          <button type="submit" id="apagar">Apagar</button>
-        </form>
-        <div id="res3"></div>
-      </section>
+    <section>
+      <h2>Atualizar Compras</h2>
+      <form id="produto-form-update">
+        <label for="id">ID:</label>
+        <input type="number" id="id" name="id" required />
+
+        <label for="quant2">Quantidade:</label>
+        <input type="number" id="quant2" name="quant" required />
+
+        <label for="date2">Data:</label>
+        <input type="date" id="date2" name="date" required />
+
+        <label for="price2">Preço:</label>
+        <input type="number" id="price2" name="price" step="0.01" required />
+
+        <label for="discountPercentage2">Percentual de Desconto:</label>
+        <input type="number" id="discountPercentage2" name="discountPercentage"  required />
+
+        <label for="paymentWay2">Forma de Pagamento:</label>
+        <input type="text" id="paymentWay2" name="paymentWay" required />
+
+        <label for="status2">Status:</label>
+        <input type="text" id="status2" name="status" required />
+
+        <button type="submit" id="atualizar">Atualizar</button>
+      </form>
+      <div id="res2"></div>
+    </section>
+
+    <section>
+      <h2>Apagar Compras</h2>
+      <form id="produto-form-delete">
+        <label for="id">ID:</label>
+        <input type="number" id="id3" name="id" required />
+        <button type="submit" id="apagar">Apagar</button>
+      </form>
+      <div id="res3"></div>
+    </section>
   </main>
 
-  
 </body>
 </html>
