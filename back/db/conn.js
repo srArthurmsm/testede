@@ -5,6 +5,8 @@ require('dotenv').config(
     }
 );
 
+console.log("Variáveis de ambiente carregadas:");
+
 const { Sequelize} = require('sequelize')
 
 const dbUser = process.env.DB_USER;

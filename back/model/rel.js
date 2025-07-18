@@ -1,5 +1,5 @@
-const Usuario = require('./usuario')
-const Produto = require('./produto')
+const Usuario = require('./Usuario')
+const Produto = require('./produtos')
 const Compras = require('./compras')
 
 Usuario.hasMany(Compras, {
