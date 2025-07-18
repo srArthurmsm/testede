@@ -48,7 +48,7 @@ listarBtn.addEventListener('click', () => {
       return resp.json();
     })
     .then(usuarios => {
-      tabelaUsuarios.innerHTML = ''; // Limpa a tabela antes de preencher
+      tabelaUsuarios.innerHTML = '';
 
       usuarios.forEach(usuario => {
         const linha = document.createElement('tr');
@@ -71,3 +71,74 @@ listarBtn.addEventListener('click', () => {
       tabelaUsuarios.innerHTML = `<tr><td colspan="9">Erro ao carregar usuários.</td></tr>`;
     });
 });
+
+const res2 = document.getElementById('res2');
+const atualizarBtn = document.getElementById('atualizar');
+
+atualizarBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  const id = document.getElementById('ID').value;
+
+  const valores = {
+    firstName: document.getElementById('nome2').value,
+    lastName: document.getElementById('sobrenome2').value,
+    age: Number(document.getElementById('idade2').value),
+    email: document.getElementById('email2').value,
+    telefone: Number(document.getElementById('telefone2').value),
+    address: document.getElementById('endereco2').value,
+    city: document.getElementById('cidade2').value,
+    state: document.getElementById('estado2').value,
+    birthDate: document.getElementById('nascimento2').value
+  };
+
+  fetch(`http://localhost:3000/usuario/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(valores)
+  })
+    .then(resp => {
+      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
+      return resp.json();
+    })
+    .then(dados => {
+      res.innerHTML = `<p style="color:green;">Usuário atualizado</p>`;
+      if (listarBtn) listarBtn.click();
+    })
+    .catch(err => {
+      console.error('Erro', err);
+      res2.innerHTML = `<p style="color:red;">Erro ao atualizar o usuário.</p>`;
+    });
+});
+
+const res3 = document.getElementById('res3');
+const apagarBtn = document.getElementById('apagar');
+
+apagarBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+  
+    const id = document.getElementById('ID2').value;
+  
+    fetch(`http://localhost:3000/usuario/${id}`, {
+      method: 'DELETE'
+    })
+      .then(resp => {
+        if (resp.status === 404) {
+          throw new Error('não encontrado');
+        }
+        if (!resp.ok) {
+          throw new Error(`Erro HTTP: ${resp.status}`);
+        }
+        return resp.json();
+      })
+      .then(() => {
+        res3.innerHTML = `<p style="color:green;">Usuário apagado</p>`;
+        if (listarBtn) listarBtn.click();
+      })
+      .catch(err => {
+        console.error('Erro ao apagar usuário:', err);
+        res3.innerHTML = `<p style="color:red;">Erro`;
+      });
+  });
