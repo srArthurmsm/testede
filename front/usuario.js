@@ -37,3 +37,37 @@ cadastrar.addEventListener('click', (e) => {
         res.innerHTML = `<p style="color:red;">Erro ao cadastrar o usuário.</p>`;
     });
 });
+
+const listarBtn = document.getElementById('listar');
+const tabelaUsuarios = document.querySelector('#usuarios-table tbody');
+
+listarBtn.addEventListener('click', () => {
+  fetch('http://localhost:3000/usuario') 
+    .then(resp => {
+      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
+      return resp.json();
+    })
+    .then(usuarios => {
+      tabelaUsuarios.innerHTML = ''; // Limpa a tabela antes de preencher
+
+      usuarios.forEach(usuario => {
+        const linha = document.createElement('tr');
+        linha.innerHTML = `
+          <td>${usuario.id}</td>
+          <td>${usuario.firstName} ${usuario.lastName}</td>
+          <td>${usuario.age}</td>
+          <td>${usuario.email}</td>
+          <td>${usuario.telefone}</td>
+          <td>${usuario.address}</td>
+          <td>${usuario.city}</td>
+          <td>${usuario.state}</td>
+          <td>${usuario.birthDate}</td>
+        `;
+        tabelaUsuarios.appendChild(linha);
+      });
+    })
+    .catch(err => {
+      console.error('Erro ao carregar usuários:', err);
+      tabelaUsuarios.innerHTML = `<tr><td colspan="9">Erro ao carregar usuários.</td></tr>`;
+    });
+});
