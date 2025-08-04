@@ -36,16 +36,6 @@ cd testede
 bash
 npm install
 
-**Configure o arquivo .env:**
-
-Crie o arquivo .env na raiz do projeto com as variáveis de ambiente de conexão com o banco de dados, por exemplo:
-env
-DB_HOST=localhost
-DB_USER=root
-DB_PASS=sua_senha
-DB_NAME=nome_do_banco
-PORT=3000
-
 ---
 
 Execução
