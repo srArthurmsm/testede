@@ -30,7 +30,7 @@ git clone [https://github.com/srArthurmsm/testede](https://github.com/srArthurms
 
 **Acesse a pasta do projeto:**
 bash
-cd projetoModelagem
+cd testede
 
 **Instale as dependências:**
 bash
