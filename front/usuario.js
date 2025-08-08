@@ -42,7 +42,7 @@ const listarBtn = document.getElementById('listar');
 const tabelaUsuarios = document.querySelector('#usuarios-table tbody');
 
 listarBtn.addEventListener('click', () => {
-  fetch('http://localhost:3000/usuario') 
+  fetch('https://dummyjson.com/users') 
     .then(resp => {
       if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
       return resp.json();
