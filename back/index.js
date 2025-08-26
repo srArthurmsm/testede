@@ -26,6 +26,7 @@ app.put('/usuario/:id', usuarioController.atualizar)
 app.delete('/usuario/:id', usuarioController.apagar)
 app.get('/usuario/id/:id', usuarioController.findbyid)
 app.get('/usuario/nome/:nome', usuarioController.findByName)
+app.post('/usuario/lote', usuarioController.cadastrarLote)
 
 app.get('/produto', produtoController.listar)
 app.post('/produto', produtoController.cadastrar)

@@ -20,7 +20,10 @@
 
   <main>
     <h1>Gerenciar Usuários</h1>
-
+    <section>
+      <h2>Cadastrar Lote</h2>
+      <button id="cardLote">Cadastrar Lote</button><br><br>
+    </section>
     <section>
       <h2>Cadastrar Novo Usuário</h2>
       <form id="usuario-form">
@@ -123,6 +126,32 @@
           <button type="submit" id="apagar">Apagar</button>
         </form>
         <div id="res3"></div>
+      </section>
+      <section>
+        <h2>Achar Usuario</h2>
+        <form id="usuario-form">
+          <label for="ID">ID</label>
+          <input type="ID" id="ID3" name="ID" required />
+          <button type="submit" id="achar">Achar</button>
+        </form>
+        <table id="usuarios-table2">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Idade</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>Endereço</th>
+              <th>Cidade</th>
+              <th>Estado</th>
+              <th>Data de naçismento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Os usuários cadastrados serão inseridos aqui via JavaScript -->
+          </tbody>
+        </table>
       </section>
   </main>
 

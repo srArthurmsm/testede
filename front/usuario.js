@@ -1,3 +1,55 @@
+
+let cardLote = document.getElementById('cardLote')
+
+cardLote.addEventListener('click', (e)=>{
+  e.preventDefault()
+  valores = []
+  fetch('https://dummyjson.com/users')
+  .then(resp => resp.json())
+  .then(dadosDummy => {
+      console.log(dadosDummy.users)
+      dadosDummy.users.forEach(dad => {
+        const val = {
+          firstName: dad.firstName,
+          lastName: dad.lastName,
+          age: dad.age,
+          email: dad.email,
+          phone: dad.phone,
+          address: dad.address.address,
+          city: dad.address.city,
+          state: dad.address.state,
+          birthDate: dad.birthDate
+        }
+          valores.push(val)
+
+        
+      })
+      console.log(valores)
+      console.log('-------------')
+
+      fetch(`http://localhost:3000/usuario/lote`,{
+          method: 'POST',
+          headers: {
+              'Content-Type':'application/json'
+          },
+          body: JSON.stringify(valores)
+      })
+      .then(resp => resp.json())
+      .then(dados => {
+        console.log('dados gravados', dados)
+      })
+      .catch((err)=>{
+          console.error('Erro ao gravar os dados', err)
+      })
+  })
+  .catch((err)=>{
+      console.error('Não foi possível carrgar os dados',err)
+  })
+
+})
+
+
+
 let res = document.getElementById('res');
 let cadastrar = document.getElementById('cadastrar');
 
@@ -9,7 +61,7 @@ cadastrar.addEventListener('click', (e) => {
         lastName: document.getElementById('sobrenome').value,
         age: Number(document.getElementById('idade').value),
         email: document.getElementById('email').value,
-        telefone: Number(document.getElementById('telefone').value),
+        phone: Number(document.getElementById('telefone').value),
         address: document.getElementById('endereco').value,
         city: document.getElementById('cidade').value,
         state: document.getElementById('estado').value,
@@ -42,12 +94,10 @@ const listarBtn = document.getElementById('listar');
 const tabelaUsuarios = document.querySelector('#usuarios-table tbody');
 
 listarBtn.addEventListener('click', () => {
-  fetch('https://dummyjson.com/users') 
-    .then(resp => {
-      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-      return resp.json();
-    })
+  fetch('http://localhost:3000/usuario') 
+    .then(resp => resp.json())
     .then(usuarios => {
+
       tabelaUsuarios.innerHTML = '';
 
       usuarios.forEach(usuario => {
@@ -57,7 +107,7 @@ listarBtn.addEventListener('click', () => {
           <td>${usuario.firstName} ${usuario.lastName}</td>
           <td>${usuario.age}</td>
           <td>${usuario.email}</td>
-          <td>${usuario.telefone}</td>
+          <td>${usuario.phone}</td>
           <td>${usuario.address}</td>
           <td>${usuario.city}</td>
           <td>${usuario.state}</td>
@@ -85,7 +135,7 @@ atualizarBtn.addEventListener('click', (e) => {
     lastName: document.getElementById('sobrenome2').value,
     age: Number(document.getElementById('idade2').value),
     email: document.getElementById('email2').value,
-    telefone: Number(document.getElementById('telefone2').value),
+    phone: Number(document.getElementById('telefone2').value),
     address: document.getElementById('endereco2').value,
     city: document.getElementById('cidade2').value,
     state: document.getElementById('estado2').value,
@@ -99,13 +149,9 @@ atualizarBtn.addEventListener('click', (e) => {
     },
     body: JSON.stringify(valores)
   })
-    .then(resp => {
-      if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-      return resp.json();
-    })
+    .then(resp => resp.json())
     .then(dados => {
       res.innerHTML = `<p style="color:green;">Usuário atualizado</p>`;
-      if (listarBtn) listarBtn.click();
     })
     .catch(err => {
       console.error('Erro', err);
@@ -119,26 +165,48 @@ const apagarBtn = document.getElementById('apagar');
 apagarBtn.addEventListener('click', (e) => {
     e.preventDefault();
   
-    const id = document.getElementById('id3').value;
+    const id = document.getElementById('ID2').value
   
     fetch(`http://localhost:3000/usuario/${id}`, {
       method: 'DELETE'
     })
-      .then(resp => {
-        if (resp.status === 404) {
-          throw new Error('não encontrado');
-        }
-        if (!resp.ok) {
-          throw new Error(`Erro HTTP: ${resp.status}`);
-        }
-        return resp.json();
-      })
+      .then(resp => resp.json())
       .then(() => {
         res3.innerHTML = `<p style="color:green;">Usuário apagado</p>`;
-        if (listarBtn) listarBtn.click();
       })
       .catch(err => {
         console.error('Erro', err);
         res3.innerHTML = `<p style="color:red;">Erro`;
+      });
+  });
+
+let achar = document.getElementById('achar')
+
+const tabelaUsuarios2 = document.getElementById('usuarios-table2');
+achar.addEventListener('click', (e) => {
+    e.preventDefault();
+  
+    const id = document.getElementById('ID3').value
+  
+    fetch(`http://localhost:3000/usuario/id/${id}`)
+      .then(resp => resp.json())
+      .then(usuario => {
+        tabelaUsuarios2.innerHTML = '';
+        const linha = document.createElement('tr');
+        linha.innerHTML = `
+          <td>${usuario.id}</td>
+          <td>${usuario.firstName} ${usuario.lastName}</td>
+          <td>${usuario.age}</td>
+          <td>${usuario.email}</td>
+          <td>${usuario.phone}</td>
+          <td>${usuario.address}</td>
+          <td>${usuario.city}</td>
+          <td>${usuario.state}</td>
+          <td>${usuario.birthDate}</td>
+        `;
+        tabelaUsuarios2.appendChild(linha);
+      })
+      .catch(err => {
+        console.error('Erro', err);
       });
   });

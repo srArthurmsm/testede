@@ -11,6 +11,18 @@ const cadastrar = async (req,res)=>{
     }
 }
 
+const cadastrarLote = async (req,res)=>{
+    const valores = req.body
+    try{
+        const dados = await Usuario.bulkCreate(valores)
+        res.status(201).json(dados)
+    }catch(err){
+        console.error(`Erro ao cadastrar dados!`,err)
+        res.status(500).json({message: 'Erro ao cadastrar dados!'})
+    }
+}
+
+
 const listar = async (req,res)=>{
     try{
         const dados = await Usuario.findAll()
@@ -88,4 +100,4 @@ const findByName = async (req, res) => {
     }
 }
 
-module.exports = { cadastrar, listar, apagar, atualizar, findbyid, findByName}
+module.exports = { cadastrar, cadastrarLote, listar, apagar, atualizar, findbyid, findByName}
