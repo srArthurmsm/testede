@@ -122,14 +122,14 @@ atualizarBtn.addEventListener('click', (e) => {
     const id = document.getElementById('id').value;
 
     const valores = {
-        titulo: document.getElementById('titulo').value,
-        descricao: document.getElementById('descricao').value,
-        categoria: document.getElementById('categoria').value,
-        preco: parseFloat(document.getElementById('price').value),
-        percentualDesconto: parseFloat(document.getElementById('percentualDesconto').value),
-        estoque: parseInt(document.getElementById('estoque').value),
-        marca: document.getElementById('marca').value,
-        imagem: document.getElementById('imagem').value
+        titulo: document.getElementById('titulo2').value,
+        descricao: document.getElementById('descricao2').value,
+        categoria: document.getElementById('categoria2').value,
+        preco: parseFloat(document.getElementById('price2').value),
+        percentualDesconto: parseFloat(document.getElementById('percentualDesconto2').value),
+        estoque: parseInt(document.getElementById('estoque2').value),
+        marca: document.getElementById('marca2').value,
+        imagem: document.getElementById('imagem2').value
     };
 
     fetch(`http://localhost:3000/produto/${id}`, {
