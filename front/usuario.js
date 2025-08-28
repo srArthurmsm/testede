@@ -21,8 +21,6 @@ cardLote.addEventListener('click', (e)=>{
           birthDate: dad.birthDate
         }
           valores.push(val)
-
-        
       })
       console.log(valores)
       console.log('-------------')
@@ -210,3 +208,34 @@ achar.addEventListener('click', (e) => {
         console.error('Erro', err);
       });
   });
+
+  let achar2 = document.getElementById('achar2')
+
+  const tabelaUsuarios3 = document.getElementById('usuarios-table3');
+  achar2.addEventListener('click', (e) => {
+      e.preventDefault();
+    
+      const nome = document.getElementById('nome3').value
+    
+      fetch(`http://localhost:3000/usuario/nome/${nome}`)
+        .then(resp => resp.json())
+        .then(usuario => {
+          tabelaUsuarios3.innerHTML = '';
+          const linha = document.createElement('tr');
+          linha.innerHTML = `
+            <td>${usuario.id}</td>
+            <td>${usuario.firstName} ${usuario.lastName}</td>
+            <td>${usuario.age}</td>
+            <td>${usuario.email}</td>
+            <td>${usuario.phone}</td>
+            <td>${usuario.address}</td>
+            <td>${usuario.city}</td>
+            <td>${usuario.state}</td>
+            <td>${usuario.birthDate}</td>
+          `;
+          tabelaUsuarios3.appendChild(linha);
+        })
+        .catch(err => {
+          console.error('Erro', err);
+        });
+    });

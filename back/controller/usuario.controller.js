@@ -40,7 +40,7 @@ const apagar = async (req,res)=>{
         const dados = await Usuario.findByPk(id)
         if(dados){
             await Usuario.destroy({where: { id: id}})
-            res.status(204).json({message: 'Dados excluídos com sucesso!'})
+            res.status(200).json({message: 'Dados excluídos com sucesso!'})
         }else{
             res.status(404).json({message: 'Usuario não encontrado!'})
         }    

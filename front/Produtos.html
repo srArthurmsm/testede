@@ -20,24 +20,28 @@
   <main>
     <h1>Gerenciar Produtos</h1>
     <section>
+      <h2>Cadastrar Lote</h2>
+      <button id="cardLote">Cadastrar Lote</button><br><br>
+    </section>
+    <section>
       <h2>Cadastrar Novo Produto</h2>
       <form id="produto-form">
         <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo" required />
+        <input type="text" id="titulo" name="titulo"  />
         <label for="descricao">Descrição:</label>
-        <textarea id="descricao" name="descricao" required></textarea>
+        <input id="descricao" name="descricao" >
         <label for="categoria">Categoria:</label>
-        <input type="text" id="categoria" name="categoria" required />
+        <input type="text" id="categoria" name="categoria"  />
         <label for="preco">Preço:</label>
-        <input type="number" id="preco" name="preco" step="0.01" required />
+        <input type="number" id="preco" name="preco" step="0.01"  />
         <label for="percentualDesconto">Percentual de Desconto:</label>
-        <input type="number" id="percentualDesconto" name="percentualDesconto" step="0.01" required />
+        <input type="number" id="percentualDesconto" name="percentualDesconto" step="0.01"  />
         <label for="estoque">Estoque:</label>
-        <input type="number" id="estoque" name="estoque" required />
+        <input type="number" id="estoque" name="estoque"  />
         <label for="marca">Marca:</label>
-        <input type="text" id="marca" name="marca" required />
+        <input type="text" id="marca" name="marca"  />
         <label for="imagem">URL da Imagem:</label>
-        <input type="text" id="imagem" name="imagem" required />
+        <input type="text" id="imagem" name="imagem"  />
         <button type="submit" id="cadastrar">Cadastrar</button>
       </form>
       <div id="res"></div>
@@ -57,7 +61,6 @@
             <th>Estoque</th>
             <th>Marca</th>
             <th>Imagem</th>
-            <th>Ações</th> 
           </tr>
         </thead>
         <tbody>
@@ -70,23 +73,23 @@
       <h2>Atualizar Produto</h2>
       <form id="produto-form-update">
         <label for="id">ID:</label>
-        <input type="number" id="id" name="id" required />
+        <input type="number" id="id" name="id"  />
         <label for="titulo2">Título:</label>
-        <input type="text" id="titulo2" name="titulo" required />
+        <input type="text" id="titulo2" name="titulo"  />
         <label for="descricao2">Descrição:</label>
-        <textarea id="descricao2" name="descricao" required></textarea>
+        <textarea id="descricao2" name="descricao" ></textarea>
         <label for="categoria2">Categoria:</label>
-        <input type="text" id="categoria2" name="categoria" required />
+        <input type="text" id="categoria2" name="categoria"  />
         <label for="preco2">Preço:</label>
-        <input type="number" id="preco2" name="preco" step="0.01" required />
+        <input type="number" id="preco2" name="preco" step="0.01"  />
         <label for="percentualDesconto2">Percentual de Desconto:</label>
-        <input type="number" id="percentualDesconto2" name="percentualDesconto" step="0.01" required />
+        <input type="number" id="percentualDesconto2" name="percentualDesconto" step="0.01"  />
         <label for="estoque2">Estoque:</label>
-        <input type="number" id="estoque2" name="estoque" required />
+        <input type="number" id="estoque2" name="estoque"  />
         <label for="marca2">Marca:</label>
-        <input type="text" id="marca2" name="marca" required />
+        <input type="text" id="marca2" name="marca"  />
         <label for="imagem2">URL da Imagem:</label>
-        <input type="text" id="imagem2" name="imagem" required />
+        <input type="text" id="imagem2" name="imagem"  />
         <button type="submit" id="atualizar">Atualizar</button>
       </form>
       <div id="res2"></div>
@@ -95,10 +98,37 @@
       <h2>Apagar Produto</h2> 
       <form id="produto-form-delete">
         <label for="id3">ID:</label>
-        <input type="number" id="id3" name="id" required />
+        <input type="number" id="id3" name="id"  />
         <button type="submit" id="apagar">Apagar</button>
       </form>
       <div id="res3"></div>
+    </section>
+    <section>
+      <h2>Achar Produto por id</h2>
+      <form id="usuario-form">
+        <label for="ID">ID</label>
+        <input type="number" id="ID4" name="ID"  />
+        <button type="submit" id="achar">Achar</button>
+      </form>
+      <table id="usuarios-table2">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Preço</th>
+            <th>Desconto (%)</th>
+            <th>Preço Final</th> 
+            <th>Estoque</th>
+            <th>Marca</th>
+            <th>Imagem</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
     </section>
   </main>
 </body>

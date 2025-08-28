@@ -23,24 +23,24 @@
     
     <section>
       <h2>Cadastrar Novo Compras</h2>
-      <form id="produto-form">
+      <form id="usuario-form">
         <label for="quant">Quantidade:</label>
-        <input type="number" id="quant" name="quant" required />
+        <input type="number" id="quant" name="quant"/>
+
+        <label for="usuario">Cod Usuario</label>
+        <input type="number" id="usuario" name="usuario"/>
+
+        <label for="produto">Cod Produto</label>
+        <input type="number" id="produto" name="produto"/>
 
         <label for="date">Data:</label>
-        <input type="date" id="date" name="date" required />
-
-        <label for="price">Preço:</label>
-        <input type="number" id="price" name="price" step="0.01" required />
-
-        <label for="discountPercentage">Percentual de Desconto:</label>
-        <input type="number" id="discountPercentage" name="discountPercentage" required />
+        <input type="date" id="date" name="date"  />
 
         <label for="paymentWay">Forma de Pagamento:</label>
-        <input type="text" id="paymentWay" name="paymentWay" required />
+        <input type="text" id="paymentWay" name="paymentWay"  />
 
         <label for="status">Status:</label>
-        <input type="text" id="status" name="status" required />
+        <input type="text" id="status" name="status"  />
 
         <button type="submit" id="cadastrar">Cadastrar</button>
       </form>
@@ -49,7 +49,7 @@
 
     <section>
       <h2>Lista de Compras</h2>
-      <table id="produtos-table">
+      <table id="usuario-form2">
         <thead>
           <tr>
             <th>ID</th>
@@ -71,27 +71,27 @@
 
     <section>
       <h2>Atualizar Compras</h2>
-      <form id="produto-form-update">
+      <form id="usuario-form">
         <label for="id">ID:</label>
-        <input type="number" id="id" name="id" required />
+        <input type="number" id="id" name="id"  />
 
         <label for="quant2">Quantidade:</label>
-        <input type="number" id="quant2" name="quant" required />
+        <input type="number" id="quant2" name="quant"  />
 
         <label for="date2">Data:</label>
-        <input type="date" id="date2" name="date" required />
+        <input type="date" id="date2" name="date"  />
 
         <label for="price2">Preço:</label>
-        <input type="number" id="price2" name="price" step="0.01" required />
+        <input type="number" id="price2" name="price" step="0.01"  />
 
         <label for="discountPercentage2">Percentual de Desconto:</label>
-        <input type="number" id="discountPercentage2" name="discountPercentage"  required />
+        <input type="number" id="discountPercentage2" name="discountPercentage"   />
 
         <label for="paymentWay2">Forma de Pagamento:</label>
-        <input type="text" id="paymentWay2" name="paymentWay" required />
+        <input type="text" id="paymentWay2" name="paymentWay"  />
 
         <label for="status2">Status:</label>
-        <input type="text" id="status2" name="status" required />
+        <input type="text" id="status2" name="status"  />
 
         <button type="submit" id="atualizar">Atualizar</button>
       </form>
@@ -100,13 +100,40 @@
 
     <section>
       <h2>Apagar Compras</h2>
-      <form id="produto-form-delete">
+      <form id="usuario-form">
         <label for="id">ID:</label>
-        <input type="number" id="id3" name="id" required />
+        <input type="number" id="id3" name="id"  />
         <button type="submit" id="apagar">Apagar</button>
       </form>
       <div id="res3"></div>
     </section>
+    
+    <section>
+      <h2>Achar Usuario por id</h2>
+      <form id="usuario-form">
+        <label for="ID">ID</label>
+        <input type="number" id="ID3" name="ID"  />
+        <button type="submit" id="achar">Achar</button>
+      </form>
+      <table id="usuarios-table3">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Quantidade</th>
+            <th>Data</th>
+            <th>Preço</th>
+            <th>Desconto (%)</th>
+            <th>Preço Final</th>
+            <th>Forma de Pagamento</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </section>
+    
   </main>
 
 </body>

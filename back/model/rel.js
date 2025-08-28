@@ -17,7 +17,7 @@ Produto.hasMany(Compras, {
     as: 'compras',
     onDelete: 'CASCADE'
 })
-  Compras.belongsTo(Produto, {
+Compras.belongsTo(Produto, {
     foreignKey: 'produtoId',
     as: 'produto'
 })

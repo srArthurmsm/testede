@@ -8,6 +8,22 @@ const Compras = db.define('compras',{
         primaryKey: true,
         autoIncrement: true
     },
+    usuarioId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references:{
+            key:'id',
+            model:'usuarios'
+        }
+    },
+    produtoId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references:{
+            key:'id',
+            model:'produtos'
+        }
+    },
     quant: {
         type: DataTypes.INTEGER,
         allowNull: false

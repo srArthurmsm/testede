@@ -33,7 +33,7 @@ app.post('/produto', produtoController.cadastrar)
 app.put('/produto/:id', produtoController.atualizar)
 app.delete('/produto/:id', produtoController.apagar)
 app.get('/produto/id/:id', produtoController.findbyid)
-
+app.post('/produto/lote', produtoController.cadastrarLote)
 
 app.get('/compra', compraController.listar)
 app.post('/compra', compraController.cadastrar)

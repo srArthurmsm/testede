@@ -11,6 +11,18 @@ const cadastrar = async (req,res)=>{
     }
 }
 
+const cadastrarLote = async (req,res)=>{
+    const valores = req.body
+    try{
+        const dados = await Produto.bulkCreate(valores)
+        res.status(201).json(dados)
+    }catch(err){
+        console.error(`Erro ao cadastrar dados!`,err)
+        res.status(500).json({message: 'Erro ao cadastrar dados!'})
+    }
+}
+
+
 const listar = async (req,res)=>{
     try{
         const dados = await Produto.findAll()
@@ -28,7 +40,7 @@ const apagar = async (req,res)=>{
         const dados = await Produto.findByPk(id)
         if(dados){
             await Produto.destroy({where: { id: id}})
-            res.status(204).json({message: 'Dados excluídos com sucesso!'})
+            res.status(200).json({message: 'Dados excluídos com sucesso!'})
         }else{
             res.status(404).json({message: 'Produto não encontrado!'})
         }    
@@ -75,4 +87,4 @@ const findbyid = async (req,res)=>{
 
 
 
-module.exports = { cadastrar, listar, apagar, atualizar, findbyid}
+module.exports = { cadastrar, cadastrarLote, listar, apagar, atualizar, findbyid}

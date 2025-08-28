@@ -1,6 +1,52 @@
 let res = document.getElementById('res');
 let cadastrar = document.getElementById('cadastrar');
 
+cardLote.addEventListener('click', (e)=>{
+    e.preventDefault()
+    valores = []
+    fetch('https://dummyjson.com/products')
+    .then(resp => resp.json())
+    .then(dadosDummy => {
+        console.log(dadosDummy.products)
+        dadosDummy.products.forEach(dad => {
+          const val = {
+            titulo: dad.title,
+            descricao: dad.description,
+            categoria: dad.category,
+            price: dad.price,
+            discountPercentage: dad.discountPercentage,
+            estoque: dad.stock,
+            marca: dad.brand,
+            imagem: dad.thumbnail
+          }
+            valores.push(val)
+  
+          
+        })
+        console.log(valores)
+        console.log('-------------')
+  
+        fetch(`http://localhost:3000/produto/lote`,{
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(valores)
+        })
+        .then(resp => resp.json())
+        .then(dados => {
+          console.log('dados gravados', dados)
+        })
+        .catch((err)=>{
+            console.error('Erro ao gravar os dados', err)
+        })
+    })
+    .catch((err)=>{
+        console.error('Não foi possível carrgar os dados',err)
+    })
+  
+  })
+
 cadastrar.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -8,8 +54,8 @@ cadastrar.addEventListener('click', (e) => {
         titulo: document.getElementById('titulo').value,
         descricao: document.getElementById('descricao').value,
         categoria: document.getElementById('categoria').value,
-        preco: parseFloat(document.getElementById('preco').value),
-        percentualDesconto: parseFloat(document.getElementById('percentualDesconto').value),
+        price: parseFloat(document.getElementById('preco').value),
+        discountPercentage: parseFloat(document.getElementById('percentualDesconto').value),
         estoque: parseInt(document.getElementById('estoque').value),
         marca: document.getElementById('marca').value,
         imagem: document.getElementById('imagem').value
@@ -22,10 +68,7 @@ cadastrar.addEventListener('click', (e) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(valores)
     })
-    .then(resp => {
-        if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-        return resp.json();
-    })
+    .then(resp => resp.json())
     .then(dados => {
         res.innerHTML = `<p style="color:green;">Produto cadastrado com sucesso! ID: ${dados.id}</p>`;
     })
@@ -40,25 +83,26 @@ const tabelaProdutos = document.querySelector('#produtos-table tbody');
 
 listarBtn.addEventListener('click', () => {
     fetch('http://localhost:3000/produto') 
-    .then(resp => {
-        if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-        return resp.json();
-    })
+    .then(resp => resp.json())
     .then(produtos => {
         tabelaProdutos.innerHTML = '';
-
+        
         produtos.forEach(produto => {
+            var preco = produto.price
+            var desconto = produto.discountPercentage
+            var final = (preco - (preco * (desconto / 100))).toFixed(2)
             const linha = document.createElement('tr');
             linha.innerHTML = `
                 <td>${produto.id}</td>
                 <td>${produto.titulo}</td>
                 <td>${produto.descricao}</td>
                 <td>${produto.categoria}</td>
-                <td>${produto.preco.toFixed(2)}</td>
-                <td>${produto.percentualDesconto.toFixed(2)}</td>
+                <td>${produto.price}</td>
+                <td>${produto.discountPercentage} %</td>
+                <td>${final}</td>
                 <td>${produto.estoque}</td>
                 <td>${produto.marca}</td>
-                <td><img src="${produto.imagem}" width="50" /></td>
+                <td><img src="${produto.imagem}" width="100" /></td>
             `;
             tabelaProdutos.appendChild(linha);
         });
@@ -81,7 +125,7 @@ atualizarBtn.addEventListener('click', (e) => {
         titulo: document.getElementById('titulo').value,
         descricao: document.getElementById('descricao').value,
         categoria: document.getElementById('categoria').value,
-        preco: parseFloat(document.getElementById('preco').value),
+        preco: parseFloat(document.getElementById('price').value),
         percentualDesconto: parseFloat(document.getElementById('percentualDesconto').value),
         estoque: parseInt(document.getElementById('estoque').value),
         marca: document.getElementById('marca').value,
@@ -93,10 +137,7 @@ atualizarBtn.addEventListener('click', (e) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(valores)
     })
-    .then(resp => {
-        if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-        return resp.json();
-    })
+    .then(resp => resp.json())
     .then(dados => {
         res2.innerHTML = `<p style="color:green;">Produto atualizado com sucesso!</p>`;
         if (listarBtn) listarBtn.click();
@@ -117,11 +158,7 @@ apagarBtn.addEventListener('click', (e) => {
     fetch(`http://localhost:3000/produto/${id}`, {
         method: 'DELETE'
     })
-    .then(resp => {
-        if (resp.status === 404) throw new Error('Produto não encontrado');
-        if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-        return resp.json();
-    })
+    .then(resp => resp.json())
     .then(() => {
         res3.innerHTML = `<p style="color:green;">Produto apagado com sucesso!</p>`;
         if (listarBtn) listarBtn.click();
@@ -131,3 +168,37 @@ apagarBtn.addEventListener('click', (e) => {
         res3.innerHTML = `<p style="color:red;">Erro ao apagar produto.</p>`;
     });
 });
+
+let achar = document.getElementById('achar')
+
+const tabelaUsuarios2 = document.getElementById('usuarios-table2');
+achar.addEventListener('click', (e) => {
+    e.preventDefault();
+  
+    const id = document.getElementById('ID4').value
+  
+    fetch(`http://localhost:3000/produto/id/${id}`)
+      .then(resp => resp.json())
+      .then(produto => {
+        var preco = produto.price
+        var desconto = produto.discountPercentage
+        var final = (preco - (preco * (desconto / 100))).toFixed(2)
+        const linha = document.createElement('tr');
+        linha.innerHTML = `
+            <td>${produto.id}</td>
+            <td>${produto.titulo}</td>
+            <td>${produto.descricao}</td>
+            <td>${produto.categoria}</td>
+            <td>${produto.price}</td>
+            <td>${produto.discountPercentage} %</td>
+            <td>${final}</td>
+            <td>${produto.estoque}</td>
+            <td>${produto.marca}</td>
+            <td><img src="${produto.imagem}" width="100" /></td>
+        `;
+        tabelaUsuarios2.appendChild(linha);
+      })
+      .catch(err => {
+        console.error('Erro', err);
+      });
+  });

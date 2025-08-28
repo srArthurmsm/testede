@@ -28,31 +28,31 @@
       <h2>Cadastrar Novo Usuário</h2>
       <form id="usuario-form">
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="firstName" required />
+        <input type="text" id="nome" name="firstName"  />
 
         <label for="sobrenome">Sobrenome:</label>
-        <input type="text" id="sobrenome" name="lastName" required />
+        <input type="text" id="sobrenome" name="lastName"  />
 
         <label for="idade">Idade:</label>
-        <input type="number" id="idade" name="age" required />
+        <input type="number" id="idade" name="age"  />
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email"  />
 
         <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" required />
+        <input type="tel" id="telefone" name="telefone"  />
 
         <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="address" required />
+        <input type="text" id="endereco" name="address"  />
 
         <label for="cidade">Cidade:</label>
-        <input type="text" id="cidade" name="city" required />
+        <input type="text" id="cidade" name="city"  />
 
         <label for="estado">Estado:</label>
-        <input type="text" id="estado" name="state" required />
+        <input type="text" id="estado" name="state"  />
 
         <label for="nascimento">Data de Nascimento:</label>
-        <input type="date" id="nascimento" name="birthDate" required />
+        <input type="date" id="nascimento" name="birthDate"  />
 
         <button type="submit" id="cadastrar">Cadastrar</button>
       </form>
@@ -76,7 +76,6 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Os usuários cadastrados serão inseridos aqui via JavaScript -->
         </tbody>
       </table>
       <button type="button" id="listar">Listar</button>
@@ -85,34 +84,34 @@
         <h2>Atualizar Usuario</h2>
         <form id="usuario-form">
           <label for="ID">ID</label>
-          <input type="ID" id="ID" name="ID" required />
+          <input type="ID" id="ID" name="ID"  />
 
           <label for="nome">Nome:</label>
-          <input type="text" id="nome2" name="firstName" required />
+          <input type="text" id="nome2" name="firstName"  />
   
           <label for="sobrenome">Sobrenome:</label>
-          <input type="text" id="sobrenome2" name="lastName" required />
+          <input type="text" id="sobrenome2" name="lastName"  />
   
           <label for="idade">Idade:</label>
-          <input type="number" id="idade2" name="age" required />
+          <input type="number" id="idade2" name="age"  />
   
           <label for="email">Email:</label>
-          <input type="email" id="email2" name="email" required />
+          <input type="email" id="email2" name="email"  />
   
           <label for="telefone">Telefone:</label>
-          <input type="tel" id="telefone2" name="telefone" required />
+          <input type="tel" id="telefone2" name="telefone"  />
   
           <label for="endereco">Endereço:</label>
-          <input type="text" id="endereco2" name="address" required />
+          <input type="text" id="endereco2" name="address"  />
   
           <label for="cidade">Cidade:</label>
-          <input type="text" id="cidade2" name="city" required />
+          <input type="text" id="cidade2" name="city"  />
   
           <label for="estado">Estado:</label>
-          <input type="text" id="estado2" name="state" required />
+          <input type="text" id="estado2" name="state"  />
   
           <label for="nascimento">Data de Nascimento:</label>
-          <input type="date" id="nascimento2" name="birthDate" required />
+          <input type="date" id="nascimento2" name="birthDate"  />
   
           <button type="submit" id="atualizar">Atualizar</button>
         </form>
@@ -122,16 +121,16 @@
         <h2>Apagar Usuario</h2>
         <form id="usuario-form">
           <label for="ID">ID</label>
-          <input type="ID" id="ID2" name="ID" required />
+          <input type="ID" id="ID2" name="ID"  />
           <button type="submit" id="apagar">Apagar</button>
         </form>
         <div id="res3"></div>
       </section>
       <section>
-        <h2>Achar Usuario</h2>
+        <h2>Achar Usuario por id</h2>
         <form id="usuario-form">
           <label for="ID">ID</label>
-          <input type="ID" id="ID3" name="ID" required />
+          <input type="number" id="ID3" name="ID"  />
           <button type="submit" id="achar">Achar</button>
         </form>
         <table id="usuarios-table2">
@@ -149,7 +148,33 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Os usuários cadastrados serão inseridos aqui via JavaScript -->
+
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <h2>Achar Usuario por nome</h2>
+        <form id="usuario-form">
+          <label for="Nome">Nome</label>
+          <input type="text" id="nome3" name="Nome"  />
+          <button id="achar2">Achar</button>
+        </form>
+        <table id="usuarios-table3">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Idade</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>Endereço</th>
+              <th>Cidade</th>
+              <th>Estado</th>
+              <th>Data de naçismento</th>
+            </tr>
+          </thead>
+          <tbody>
+
           </tbody>
         </table>
       </section>
