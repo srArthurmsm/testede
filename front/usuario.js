@@ -75,10 +75,7 @@ cadastrar.addEventListener('click', (e) => {
         },
         body: JSON.stringify(valores)
     })
-    .then(resp => {
-        if (!resp.ok) throw new Error(`Erro HTTP: ${resp.status}`);
-        return resp.json();
-    })
+    .then(resp => resp.json())
     .then(dados => {
         res.innerHTML = `<p style="color:green;">Usuário cadastrado com sucesso! Nome: ${dados.firstName}</p>`;
     })

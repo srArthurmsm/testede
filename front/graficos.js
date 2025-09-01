@@ -1,4 +1,4 @@
-const maxItems = 10;
+const maxItems = 100
 
 document.getElementById('gerarGraficos').addEventListener('click', async () => {
   const startId = Number(document.getElementById('startId').value);
