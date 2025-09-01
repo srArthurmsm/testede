@@ -1,5 +1,6 @@
 const Produto = require('../model/produtos')
 const Compras = require('../model/compras')
+const Usuario = require('../model/Usuario')
 
 const cadastrar = async (req, res) => {
   try {
@@ -10,7 +11,7 @@ const cadastrar = async (req, res) => {
     }
     const price = produto.price;
     const discountPercentage = produto.discountPercentage
-    const finalPrice = price - (price * discountPercentage / 100)
+    const finalPrice = (price - (price * discountPercentage / 100)).toFixed(2)
     const compra = await Compras.create({
       usuarioId,
       produtoId,
@@ -79,7 +80,6 @@ const atualizar = async (req,res)=>{
 
 const findbyid = async (req,res)=>{
     const id = req.params.id
-    const valores = req.body
     try{
         let dados = await Compras.findByPk(id)
         if(dados){
@@ -93,5 +93,33 @@ const findbyid = async (req,res)=>{
     }
 }
 
+const listarCompleto = async (req, res) => {
+    try {
+      const compras = await Compras.findAll();
+  
+      const dados = [];
+      for (const compra of compras) {
+        const produto = await Produto.findByPk(compra.produtoId);
+        const usuario = await Usuario.findByPk(compra.usuarioId);
+  
+        dados.push({
+          id: compra.id,
+          usuario: usuario ? `${usuario.firstName} ${usuario.lastName}` : "Não encontrado",
+          produto: produto ? produto.titulo : "Não encontrado",
+          quant: compra.quant,             
+          date: compra.date,                 
+          finalPrice: compra.finalPrice,
+          paymentWay: compra.paymentWay,
+          status: compra.status,
+        });
+      }
+  
+      res.status(200).json(dados);
+    } catch (err) {
+      console.error("Erro ao listar os dados!", err);
+      res.status(500).json({ message: "Erro ao listar os dados!" });
+    }
+};
+  
 
-module.exports = { cadastrar, listar, apagar, atualizar, findbyid}
+module.exports = { cadastrar, listar, apagar, atualizar, findbyid, listarCompleto}

@@ -97,7 +97,7 @@ listarBtn.addEventListener('click', () => {
                 <td>${produto.titulo}</td>
                 <td>${produto.descricao}</td>
                 <td>${produto.categoria}</td>
-                <td>${produto.price}</td>
+                <td>${produto.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                 <td>${produto.discountPercentage} %</td>
                 <td>${final}</td>
                 <td>${produto.estoque}</td>

@@ -71,7 +71,6 @@ const atualizar = async (req,res)=>{
 
 const findbyid = async (req,res)=>{
     const id = req.params.id
-    const valores = req.body
     try{
         let dados = await Produto.findByPk(id)
         if(dados){

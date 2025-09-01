@@ -40,6 +40,7 @@ app.post('/compra', compraController.cadastrar)
 app.put('/compra/:id', compraController.atualizar)
 app.delete('/compra/:id', compraController.apagar)
 app.get('/compra/id/:id', compraController.findbyid)
+app.get('/compra/list', compraController.listarCompleto)
 
 
 app.get('/', (req,res)=>{
