@@ -6,7 +6,18 @@ listarBtn.addEventListener('click', (e) => {
     fetch('http://localhost:3000/produto') 
     .then(resp => resp.json())
     .then(produtos => {
-        tabelaProdutos.innerHTML = '';
+        tabelaProdutos.innerHTML = `<tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Preço</th>
+            <th>Desconto (%)</th>
+            <th>Preço Final</th> 
+            <th>Estoque</th>
+            <th>Marca</th>
+            <th>Imagem</th>
+          </tr>`
         
         produtos.forEach(produto => {
             var preco = produto.price
@@ -45,7 +56,7 @@ listarBtn2.addEventListener('click', (e) => {
     .then(resp => resp.json())
     .then(produtos => {
       tabelaProdutos2.innerHTML = '';
-
+      
       produtos.forEach(compra => {
         const linha = document.createElement('tr');
 

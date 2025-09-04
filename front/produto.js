@@ -85,8 +85,8 @@ listarBtn.addEventListener('click', () => {
     fetch('http://localhost:3000/produto') 
     .then(resp => resp.json())
     .then(produtos => {
-        tabelaProdutos.innerHTML = '';
         
+        tabelaProdutos.innerHTML = ''
         produtos.forEach(produto => {
             var preco = produto.price
             var desconto = produto.discountPercentage
@@ -184,7 +184,7 @@ achar.addEventListener('click', (e) => {
         var desconto = produto.discountPercentage
         var final = (preco - (preco * (desconto / 100))).toFixed(2)
         const linha = document.createElement('tr');
-        linha.innerHTML = `
+        linha.innerHTML += `
             <td>${produto.id}</td>
             <td>${produto.titulo}</td>
             <td>${produto.descricao}</td>

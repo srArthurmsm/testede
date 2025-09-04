@@ -1,0 +1,10 @@
+import { DataTypes } from 'sequelize'
+
+const db = require('../db/conn')
+
+
+const Aleatorio = db.define("Aleatorio",{
+    id:{
+        type: DataTypes
+    }
+})

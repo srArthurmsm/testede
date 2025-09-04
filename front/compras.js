@@ -36,7 +36,16 @@ listarBtn.addEventListener('click', () => {
   fetch('http://localhost:3000/compra') 
     .then(resp => resp.json())
     .then(produtos => {
-      tabelaProdutos.innerHTML = '';
+      tabelaProdutos.innerHTML = `<tr>
+            <th>ID</th>
+            <th>Quantidade</th>
+            <th>Data</th>
+            <th>Preço</th>
+            <th>Desconto (%)</th>
+            <th>Preço Final</th>
+            <th>Forma de Pagamento</th>
+            <th>Status</th>
+          </tr>`
 
       produtos.forEach(compra => {
         const linha = document.createElement('tr');
