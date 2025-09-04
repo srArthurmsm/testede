@@ -1,6 +1,7 @@
-const maxItems = 100
+const maxItems = 10
 
-document.getElementById('gerarGraficos').addEventListener('click', async () => {
+document.getElementById('gerarGraficos').addEventListener('click', async (e) => {
+  e.preventDefault()
   const startId = Number(document.getElementById('startId').value);
   const endId = Number(document.getElementById('endId').value);
 
@@ -28,9 +29,6 @@ document.getElementById('gerarGraficos').addEventListener('click', async () => {
 
 function renderChart(canvasId, title, labels, data, label) {
   const ctx = document.getElementById(canvasId).getContext('2d');
-  if (window[canvasId + 'Instance']) {
-    window[canvasId + 'Instance'].destroy();
-  }
   window[canvasId + 'Instance'] = new Chart(ctx, {
     type: 'bar',
     data: {

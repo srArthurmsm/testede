@@ -40,8 +40,6 @@ const listar = async (req,res)=>{
     }
 }
 
-
-
 const apagar = async (req,res)=>{
     const id = req.params.id
     try{

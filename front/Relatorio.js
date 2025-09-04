@@ -1,7 +1,8 @@
 const listarBtn = document.getElementById('listar');
 const tabelaProdutos = document.getElementById('produtos-table')
 
-listarBtn.addEventListener('click', () => {
+listarBtn.addEventListener('click', (e) => {
+  e.preventDefault()
     fetch('http://localhost:3000/produto') 
     .then(resp => resp.json())
     .then(produtos => {
@@ -38,7 +39,8 @@ listarBtn.addEventListener('click', () => {
 const listarBtn2 = document.getElementById('listar2');
 const tabelaProdutos2 = document.getElementById('usuario-form2');
 
-listarBtn2.addEventListener('click', () => {
+listarBtn2.addEventListener('click', (e) => {
+  e.preventDefault()
   fetch('http://localhost:3000/compra/list') 
     .then(resp => resp.json())
     .then(produtos => {
